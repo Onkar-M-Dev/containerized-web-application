@@ -5,10 +5,10 @@ class Config:
     # ==========================================
     # Core Flask Configuration
     # ==========================================
-    SECRET_KEY = os.environ.get(
-        'SECRET_KEY',
-        'devkey'
-    )
+    SECRET_KEY = os.environ.get('SECRET_KEY')
+
+    if not SECRET_KEY:
+        raise RuntimeError("SECRET_KEY environment variable is required")
 
     # ==========================================
     # Database Configuration
@@ -20,23 +20,15 @@ class Config:
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-    # ==========================================
-    # Mail Configuration (SendGrid)
-    # ==========================================
-    MAIL_SERVER = 'smtp.sendgrid.net'
-    MAIL_PORT = 587
+    MAIL_SERVER = os.environ.get('MAIL_SERVER', 'in-v3.mailjet.com')
+    MAIL_PORT = int(os.environ.get('MAIL_PORT', '587'))
+    MAIL_USE_TLS = os.environ.get('MAIL_USE_TLS', 'True').lower() == 'true'
+    MAIL_USE_SSL = os.environ.get('MAIL_USE_SSL', 'False').lower() == 'true'
 
-    MAIL_USE_TLS = True
-    MAIL_USE_SSL = False
-
-    # SendGrid SMTP Credentials
-    MAIL_USERNAME = 'apikey'
+    MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
     MAIL_PASSWORD = os.environ.get('EMAIL_PASS')
+    MAIL_DEFAULT_SENDER = os.environ.get('MAIL_DEFAULT_SENDER')
 
-    # Verified Sender Email (same email verified in SendGrid)
-    MAIL_DEFAULT_SENDER = 'dontreply.flaskblog@gmail.com'
-
-    # Prevent long SMTP hangs
     MAIL_MAX_EMAILS = 5
     MAIL_SUPPRESS_SEND = False
     MAIL_ASCII_ATTACHMENTS = False

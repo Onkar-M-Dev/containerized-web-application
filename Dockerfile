@@ -19,4 +19,4 @@ COPY . .
 EXPOSE 5000
 
 # Run app
-CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5000", "run:app"]
+CMD ["gunicorn", "-w", "1", "-b", "0.0.0.0:5000", "run:app"]
