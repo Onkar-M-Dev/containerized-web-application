@@ -87,35 +87,23 @@ The application was subsequently taken down, and the temporary AWS resources wer
 The AWS deployment used a single EC2 instance to host the application and database containers. The application was exposed through TCP port `5000`, while PostgreSQL was accessible to the application through the internal Docker network.
 
 ```mermaid
-
 flowchart TB
+    Browser[User / Web Browser]
+    SG[AWS Security Group]
+    EC2[Amazon EC2 - Ubuntu Server]
 
-Â  Â  U[User / Web Browser]
+    subgraph Compose[Docker Compose on EC2]
+        Web[Flask Application - Gunicorn :5000]
+        DB[(PostgreSQL)]
+        Web <-->|Internal Docker network| DB
+    end
 
-Â  Â  SG[AWS Security Group]
+    Mail[Mailjet SMTP]
 
-Â  Â  EC2[Amazon EC2\<br/>Ubuntu Server]
-
-Â  Â  subgraph DC[Docker Compose on EC2]
-
-Â  Â  Â  Â  WEB[Flask Application\<br/>Gunicorn :5000]
-
-Â  Â  Â  Â  DB[(PostgreSQL)]
-
-Â  Â  Â  Â  WEB <-->|Internal Docker network| DB
-
-Â  Â  end
-
-Â  Â  SMTP[Mailjet SMTP]
-
-Â  Â  U -->|HTTP :5000| SG
-
-Â  Â  SG --> EC2
-
-Â  Â  EC2 --> WEB
-
-Â  Â  WEB -->|SMTP submission| SMTP
-
+    Browser -->|HTTP :5000| SG
+    SG --> EC2
+    EC2 --> Web
+    Web -->|SMTP submission| Mail
 ```
 
 **Architecture notes**
@@ -141,7 +129,7 @@ flowchart TB
 | Component | Configuration |
 |---|---|
 | Compute | Amazon EC2 |
-| Region | Mumbai â€” `ap-south-1` |
+| Region | Mumbai (`ap-south-1`) |
 | Operating system | Ubuntu Server 24.04.5 LTS |
 | Instance type | `t3.micro` |
 | Container runtime | Docker |
