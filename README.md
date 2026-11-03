@@ -79,7 +79,7 @@ The application was subsequently taken down, and the temporary AWS resources wer
 | Production application server | Gunicorn |
 | Database | PostgreSQL, SQLAlchemy |
 | Email service | Mailjet SMTP |
-| CI/CD | GitHub Actions â€” existing workflow associated with the Render deployment |
+| CI/CD | GitHub Actions existing workflow associated with the Render deployment |
 | Source control | Git, GitHub |
 
 ## Architecture
