@@ -248,7 +248,7 @@ docker compose ps
 
 ```
 
-### Troubleshooting
+### Inspecting Container Logs
 
 ```bash
 
