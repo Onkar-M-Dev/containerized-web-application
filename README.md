@@ -446,8 +446,6 @@ For future temporary deployments, collect evidence before termination, then insp
 
 - Improve deployment repeatability through infrastructure-as-code and documented recovery procedures.
 
----
-
 ## Author
 
 **Onkar Marne**  
