@@ -446,10 +446,12 @@ For future temporary deployments, collect evidence before termination, then insp
 
 - Improve deployment repeatability through infrastructure-as-code and documented recovery procedures.
 
+---
+
 ## Author
 
-**Onkar Marne**
+**Onkar Marne**  
+Cloud Engineer | AWS | Terraform | Docker | GitHub Actions | Python
 
-- GitHub: [Onkar-M-Dev](https://github.com/Onkar-M-Dev)
-
-- LinkedIn: [Onkar Marne](https://www.linkedin.com/in/onkar-m-54166819b)
+- GitHub: https://github.com/Onkar-M-Dev
+- LinkedIn: https://www.linkedin.com/in/onkar-m-54166819b
